@@ -1,3 +1,5 @@
 /gh-plt
 /gh-plt.exe
-.agents/skills
+/.agents/skills
+/agent/skills
+.claude/skills
