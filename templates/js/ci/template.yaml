@@ -1,0 +1,13 @@
+description: "Run the Node.js test suite"
+files:
+  - source: workflow.yml
+    destination: .github/workflows/js-ci.yml
+    variables:
+      - name: node_version
+        type: string
+        prompt: "Node.js version?"
+        default: "22"
+      - name: coverage
+        type: bool
+        prompt: "Include test coverage?"
+        default: false

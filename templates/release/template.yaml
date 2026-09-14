@@ -1,0 +1,17 @@
+description: "Tag-triggered GitHub release, plus a starter CHANGELOG"
+files:
+  - source: workflow.yml
+    destination: .github/workflows/release.yml
+    variables:
+      - name: draft
+        type: bool
+        prompt: "Create the release as a draft?"
+        default: false
+
+  - source: changelog.md
+    destination: CHANGELOG.md
+    variables:
+      - name: project_name
+        type: string
+        prompt: "Project name for the changelog header?"
+        default: "This project"

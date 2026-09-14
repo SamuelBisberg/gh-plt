@@ -1,0 +1,34 @@
+languages:
+  - name: php
+    markers: ["composer.json"]
+    frameworks:
+      - name: laravel
+        markers: ["artisan"]
+    package_managers:
+      - name: composer
+        default: true
+        install: ["composer", "require", "--dev", "{package}"]
+
+  - name: js
+    markers: ["package.json"]
+    package_managers:
+      - name: pnpm
+        lockfile: "pnpm-lock.yaml"
+        install: ["pnpm", "add", "-D", "{package}"]
+      - name: yarn
+        lockfile: "yarn.lock"
+        install: ["yarn", "add", "--dev", "{package}"]
+      - name: npm
+        lockfile: "package-lock.json"
+        default: true
+        install: ["npm", "install", "--save-dev", "{package}"]
+
+  - name: python
+    markers: ["pyproject.toml"]
+    package_managers:
+      - name: uv
+        lockfile: "uv.lock"
+        install: ["uv", "add", "--dev", "{package}"]
+      - name: pip
+        default: true
+        install: ["pip", "install", "{package}"]

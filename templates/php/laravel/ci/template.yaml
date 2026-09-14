@@ -1,0 +1,16 @@
+description: "Run the Laravel test suite with PHPUnit/Pest"
+files:
+  - source: workflow.yml
+    destination: .github/workflows/laravel-ci.yml
+    requires:
+      - language: php
+        package: pestphp/pest
+    variables:
+      - name: coverage
+        type: bool
+        prompt: "Include test coverage?"
+        default: false
+      - name: php_version
+        type: string
+        prompt: "PHP version?"
+        default: "8.3"

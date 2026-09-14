@@ -1,0 +1,14 @@
+description: "Add common Node.js ignores and an npm test script to an existing project"
+files:
+  - source: gitignore-additions.txt
+    destination: .gitignore
+    strategy: append
+
+  - source: package-scripts.json
+    destination: package.json
+    strategy: merge
+    variables:
+      - name: test_command
+        type: string
+        prompt: "Test script command?"
+        default: "node --test"

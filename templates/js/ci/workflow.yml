@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@latest
+
+      - uses: actions/setup-node@latest
+        with:
+          node-version: "{{ .node_version }}"
+
+      - run: npm ci
+{{ if .coverage }}
+      - run: npm test -- --coverage
+{{ else }}
+      - run: npm test
+{{ end }}

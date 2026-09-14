@@ -1,0 +1,16 @@
+description: "Run the Python test suite with pytest"
+files:
+  - source: workflow.yml
+    destination: .github/workflows/python-ci.yml
+    requires:
+      - language: python
+        package: pytest-cov
+    variables:
+      - name: python_version
+        type: string
+        prompt: "Python version?"
+        default: "3.12"
+      - name: coverage
+        type: bool
+        prompt: "Include test coverage?"
+        default: false

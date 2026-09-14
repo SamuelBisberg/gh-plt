@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@latest
+
+      - uses: actions/setup-python@latest
+        with:
+          python-version: "{{ .python_version }}"
+
+      - run: uv sync
+{{ if .coverage }}
+      - run: uv run pytest --cov
+{{ else }}
+      - run: uv run pytest
+{{ end }}

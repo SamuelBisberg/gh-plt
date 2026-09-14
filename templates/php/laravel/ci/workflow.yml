@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@latest
+
+      - uses: shivammathur/setup-php@latest
+        with:
+          php-version: "{{ .php_version }}"
+
+      - run: composer install --no-interaction --prefer-dist
+{{ if .coverage }}
+      - run: vendor/bin/pest --coverage
+{{ else }}
+      - run: vendor/bin/pest
+{{ end }}
